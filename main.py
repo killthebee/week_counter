@@ -9,6 +9,7 @@ app = FastAPI()
 origins = [
     "http://localhost",
     "http://localhost:63342",
+    "https://killthebee.github.io/"
 ]
 
 app.add_middleware(
