@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="ru"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>
+Подсчёт номера недели
+</title>
+
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+
+<div class="demo-meta">
+  <h1 class="demo-title">Подсчёт номера недели</h1>
+  <p class="demo-desc">Введите дату, чтобы узнать номер недели, отсчет ведётся с 1 января 2019. Страница создана в рамаках т.з. Физикл</p>
+</div>
+
+
+<div class="loginform cf">
+	<form>
+		<ul>
+			<li>
+				<label for="userdate">Дата</label>
+				<input id="requested_url" type="text" name="userdate" placeholder="27 янаваря 2020" required>
+			</li>
+
+				<input id="submit_button" value="Отправить">
+		</ul>
+	</form>
+</div>
+<div class="loginform cf">
+	<h2>Результат: </h2>
+</div>
+
+</body>
+<script>
+let button = document.querySelector('#submit_button'),
+	input = document.querySelector('#requested_url')
+	result = document.querySelector('h2');
+button.addEventListener('click', function (e) {
+	fetch(`https://week-counter.herokuapp.com/${input.value}`)
+			.then((response) => {
+				return response.json();
+			})
+			.then((data) => {
+				if (data.weeks) {
+					result.textContent = `Результат: ${data.weeks}`;
+				} else if (data.Error) {
+					result.textContent = `Error: ${data.Error}`;
+				}
+			});
+})
+</script>
+</html>
