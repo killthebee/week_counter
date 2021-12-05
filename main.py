@@ -12,4 +12,6 @@ async def read_item(date_input: str):
     if not parsed_date:
         return {"Error": "Failed to parse date"}
     weeks = possible_date.count_weeks(parsed_date)
+    if not weeks:
+        return {"Error": "Date is behind counting start"}
     return {"weeks": weeks}

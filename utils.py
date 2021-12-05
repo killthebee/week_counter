@@ -59,6 +59,8 @@ class PossibleDate:
 
     def count_weeks(self, date: datetime.date) -> int:
         date_delta = (date - self.week_counter_start).days
-        if date_delta <= 4:
+        if date_delta < 0:
+            return None
+        elif date_delta <= 4:
             return 1
         return int((date_delta - self.first_week_days) / self.days_in_week + self.initial_week_count)
